@@ -1,0 +1,252 @@
+//Mixins
+@use "sass:math";
+
+//functions for responsive mixins
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min !=0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - .02px, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints)==null, '', '#{$name}');
+}
+
+
+// ------------------
+// Responsive mixins
+// -------------------
+@mixin media-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
+
+@mixin media-down($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $current: map-get($breakpoints, $name);
+  $current-max: $current - .02px;
+
+  @if $min {
+
+    @media (max-width: $current-max) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
+
+@mixin media-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+  $current-upper: map-get($breakpoints, $upper);
+  $current-upper-max: $current-upper - .02px;
+
+  @if $min !=null {
+
+    @media (min-width: $min) and (max-width: $current-upper-max) {
+      @content;
+    }
+  }
+
+  @else if $min==null {
+
+    @include media-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+//mixin screen sizes breakpoints
+$grid-breakpoints: ("xs": 576px,
+  "s": 768px,
+  "m":992px,
+  "l":1024px,
+  "xl": 1280px,
+);
+
+//Reset
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+p,
+a,
+img,
+i,
+ul,
+li,
+form,
+label,
+article,
+canvas,
+footer,
+header,
+menu,
+nav,
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1;
+}
+
+ul {
+  list-style: none;
+}
+
+a img {
+  border: none;
+}
+
+article,
+footer,
+header,
+main,
+nav,
+section {
+  display: block;
+}
+
+button {
+  background: none;
+  border: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+input {
+  background: none;
+  border: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: initial;
+  text-decoration: none;
+}
+
+select {
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+//Fonts
+
+@font-face {
+  font-family: 'Libre Bold';
+  src: url(../fonts/LibreBaskerville-Bold.woff2);
+}
+
+@font-face {
+  font-family: 'Libre Regular';
+  src: url(../fonts/LibreBaskerville-Regular.woff2);
+}
+
+@font-face {
+  font-family: 'Montserrat Bold';
+  src: url(../fonts/Montserrat-Bold.woff2);
+}
+
+@font-face {
+  font-family: 'Montserrat Extra Bold';
+  src: url(../fonts/Montserrat-ExtraBold.woff2);
+}
+
+@font-face {
+  font-family: 'Montserrat Light';
+  src: url(../fonts/Montserrat-Light.woff2);
+}
+
+@font-face {
+  font-family: 'Montserrat Medium';
+  src: url(../fonts/Montserrat-Medium.woff2);
+}
+
+@font-face {
+  font-family: 'Montserrat Regular';
+  src: url(../fonts/Montserrat-Regular.woff2);
+}
+
+
+//Variables
+
+$color-black:#000;
+$color-white:#fff;
+$color-light-gray:#c7c7c7;
+$color-gray:#757575;
+
+$libre-bold:  'Libre Bold';
+$libre-regular:  'Libre Regular';
+$montserrat-extrabold:'Montserrat Extra Bold';
+$montserrat-light: 'Montserrat Light';
+$montserrat-medium: 'Montserrat Medium';
+$montserrat-regular:'Montserrat Regular';
+$montserrat-bold:'Montserrat Bold';
+
+body {
+  overflow-y: hidden;
+}

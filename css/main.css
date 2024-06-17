@@ -1,0 +1,131 @@
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+p,
+a,
+img,
+i,
+ul,
+li,
+form,
+label,
+article,
+canvas,
+footer,
+header,
+menu,
+nav,
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1;
+}
+
+ul {
+  list-style: none;
+}
+
+a img {
+  border: none;
+}
+
+article,
+footer,
+header,
+main,
+nav,
+section {
+  display: block;
+}
+
+button {
+  background: none;
+  border: none;
+}
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+button:active {
+  outline: none;
+  box-shadow: none;
+}
+
+input {
+  background: none;
+  border: none;
+}
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+input:active {
+  outline: none;
+  box-shadow: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: initial;
+  text-decoration: none;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: none;
+}
+select:active {
+  outline: none;
+  box-shadow: none;
+}
+
+@font-face {
+  font-family: "Libre Bold";
+  src: url(../fonts/LibreBaskerville-Bold.woff2);
+}
+@font-face {
+  font-family: "Libre Regular";
+  src: url(../fonts/LibreBaskerville-Regular.woff2);
+}
+@font-face {
+  font-family: "Montserrat Bold";
+  src: url(../fonts/Montserrat-Bold.woff2);
+}
+@font-face {
+  font-family: "Montserrat Extra Bold";
+  src: url(../fonts/Montserrat-ExtraBold.woff2);
+}
+@font-face {
+  font-family: "Montserrat Light";
+  src: url(../fonts/Montserrat-Light.woff2);
+}
+@font-face {
+  font-family: "Montserrat Medium";
+  src: url(../fonts/Montserrat-Medium.woff2);
+}
+@font-face {
+  font-family: "Montserrat Regular";
+  src: url(../fonts/Montserrat-Regular.woff2);
+}
+body {
+  overflow-y: hidden;
+}/*# sourceMappingURL=main.css.map */
